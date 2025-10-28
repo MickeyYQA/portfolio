@@ -1,7 +1,7 @@
 /* Editorial serif minimalism with warm organic tones */
 :root {
   --bg: #f7f6fb; /* pastel lavender background */
-  --bg-olive: #eaf0e6; /* soft olive tint */
+  --bg-olive: #121212; /* global dark background */
   --text: #2b2b2b;
   --muted: #6d6d6d;
   --accent-olive: #6f8a5f;
@@ -872,6 +872,11 @@ body {
   border-bottom-color: rgba(255,255,255,0.4);
 }
 
+/* About page hero half height */
+.page-about .hero.intro.half {
+  min-height: 50vh;
+}
+
 /* Disable fixed backgrounds on phones for performance & compatibility */
 @media (max-width: 640px) {
   .hero.intro,
@@ -882,4 +887,98 @@ body {
   .projects {
     background-attachment: scroll;
   }
+}
+/* Page: About (dark theme) */
+.page-about {
+  background: #121212; /* override global pastel olive on About page */
+}
+.page-about .section {
+  background: #121212;
+  color: #fff;
+}
+.page-about .section h1,
+.page-about .section h2,
+.page-about .section h3,
+.page-about .section p,
+.page-about .section li {
+  color: #fff;
+}
+.page-about .page-sub {
+  color: #fff;
+}
+.page-about .site-footer {
+  background: rgba(0, 0, 0, 0.5);
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+.page-about .site-footer p, .page-about .site-footer a {
+  color: #fff;
+}
+
+/* (Removed darkened header for About to match other pages) */
+
+/* About intro row with right-side CV button */
+.page-about .about-intro-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.page-about .about-intro-text { flex: 1; }
+.page-about .btn-cv-about {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  background: #fff;
+  color: #121212;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  font-family: var(--serif);
+}
+.page-about .btn-cv-about .icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.page-about .btn-cv-about:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+}
+@media (max-width: 640px) {
+  .page-about .about-intro-row { flex-direction: column; align-items: flex-start; }
+  .page-about .btn-cv-about { margin-top: 12px; }
+}
+
+/* About page: Hobbies section */
+.page-about .hobbies {
+  margin-top: 24px;
+}
+
+.page-about .hobbies h2 {
+  margin: 0 0 12px 0; /* use default h2 size; just spacing */
+}
+
+.page-about .hobby-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap; /* wrap on small screens while keeping horizontal priority */
+}
+
+.page-about .hobby-row a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.page-about .hobby-row img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.page-about .hobbies .hobby-intro {
+  margin-bottom: 12px;
 }

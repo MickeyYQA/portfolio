@@ -7,33 +7,63 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="header-scroll.js" defer></script>
 </head>
-<body>
+<body class="page-about">
   <header class="site-header">
     <div class="container">
-      <div class="brand"><a href="index.html" style="text-decoration:none;color:inherit;">about.you7n</a></div>
+      <div class="brand"><a href="index.html" style="text-decoration:none;color:inherit;">Qiao Yang</a></div>
       <nav class="site-nav">
         <a href="linguistics.html">Linguistics</a>
         <a href="comics.html">Comics</a>
         <a href="technology.html">Technology</a>
         <a href="writing.html">Writing</a>
-        <a href="about.html" aria-current="page">About</a>
+        <a href="about.html" class="active">About</a>
         <a class="btn-cv" href="pdfs/qiao%20yang%20resume.pdf" download="qiao yang resume.pdf">CV</a>
       </nav>
     </div>
   </header>
+  
+  <!-- Hero similar to writing.html -->
+  <section class="hero intro half">
+    <div class="container">
+      <h1 class="intro-line">About</h1>
+      <p class="intro-sub">Interdisciplinary student exploring linguistics, art, and technology.</p>
+    </div>
+  </section>
 
   <main class="container section">
-    <h1 class="page-title">About</h1>
-    <p class="page-sub">I’m an interdisciplinary student based in Beijing, fascinated by how sound, structure, and meaning shape our perception of the world.</p>
-    <p>My work moves across linguistics, art, and technology — from phonetic research to comic storytelling and AI-based language tools.</p>
-    <p>Currently studying sociophonetics and language technology at Beijing No.80 High School International Department.</p>
+    <div class="about-intro-row">
+      <p class="page-sub about-intro-text">Qiao Yang studies how we speak, think, and connect. Their work bridges linguistics, computation, and art, tracing patterns across language and life. They believe every sound, symbol, and story reveals how humans make sense of the world.</p>
+      <a class="btn-cv-about" href="pdfs/qiao%20yang%20resume.pdf" download="qiao yang resume.pdf" aria-label="Download Curriculum Vitae">
+        <svg class="icon icon-download" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3v10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <path d="M8 11l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M5 21h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        Download Curriculum Vitæ
+      </a>
+    </div>
+
+    <section class="hobbies">
+      <h2>Hobbies</h2>
+      <p class="hobby-intro">I track exploration and discovery through Geocaching. Below are my stats and badge bar — click to view detailed progress and achievements.</p>
+      <div class="hobby-row">
+        <a href="https://project-gc.com/" target="_blank" rel="noopener noreferrer">
+          <img src="https://cdn2.project-gc.com/StatBar/you7n.png" alt="Project-GC StatBar for you7n" />
+        </a>
+        <a href="https://project-gc.com/ProfileStats/you7n#BadgeGen" target="_blank" rel="noopener noreferrer">
+          <img src="https://cdn2.project-gc.com/BadgeBar/you7n.png" alt="Project-GC BadgeBar for you7n" />
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>© 2025 about.you7n — About</p>
+      <p>© 2025 Qiao Yang</p>
     </div>
   </footer>
 </body>
