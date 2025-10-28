@@ -7,6 +7,7 @@
   --accent-olive: #6f8a5f;
   --accent-lavender: #8e79b7;
   --border: #dedcdf;
+  --text-light: rgba(255, 255, 255, 0.95); /* light text for dark backgrounds */
 
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
@@ -209,6 +210,7 @@ body {
   letter-spacing: 0.02em;
 }
 .page-sub { color: var(--muted); max-width: 70ch; }
+.section.gallery .page-sub { color: var(--text-light); }
 
 .section {
   padding: 40px 0 80px;
@@ -245,17 +247,17 @@ body {
   display: inline-block;
   margin-top: 10px;
   text-decoration: none;
-  color: var(--text);
-  border: 1px solid var(--border);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.6);
   border-radius: 999px;
   padding: 8px 14px;
-  background: rgba(255,255,255,0.6);
+  background: rgba(0,0,0,0.2);
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 .btn-explore:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-  border-color: #cfcbd5;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  border-color: rgba(255,255,255,0.9);
 }
 
 .links a { color: var(--text); text-decoration: none; }
@@ -570,6 +572,10 @@ body {
 .page-writing .hero.intro.half {
   min-height: 50vh;
 }
+/* Writing page hero background image */
+.page-writing .hero.intro {
+  background-image: url('assets/main_background_3.jpg');
+}
 
 /* Linguistics page hero half height */
 .page-linguistics .hero.intro.half {
@@ -639,6 +645,14 @@ body {
 /* Technology page hero half height */
 .page-technology .hero.intro.half {
   min-height: 50vh;
+}
+/* Comics page hero half height */
+.page-comics .hero.intro.half {
+  min-height: 50vh;
+}
+/* Comics page hero background image */
+.page-comics .hero.intro {
+  background-image: url('assets/main_background_5.png');
 }
 /* Homepage section fixed backgrounds and overlay mask */
 .hero.intro,
@@ -767,16 +781,7 @@ body {
   color: #fff;
 }
 .site-footer a { color: #fff; }
-/* Writing page CTA on dark background */
-.section.writing .btn-explore {
-  color: #fff;
-  border-color: rgba(255,255,255,0.6);
-  background: rgba(0,0,0,0.2);
-}
-.section.writing .btn-explore:hover {
-  border-color: rgba(255,255,255,0.9);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-}
+/* Writing page CTA on dark background - now unified with other buttons */
 .links a { color: var(--text); text-decoration: none; }
 .links a:hover { text-decoration: underline; }
 
@@ -876,6 +881,11 @@ body {
 .page-about .hero.intro.half {
   min-height: 50vh;
 }
+/* About page hero background image (normal display) */
+.page-about .hero.intro {
+  background-image: url('assets/main_background_2-2.png');
+  background-position: center;
+}
 
 /* Disable fixed backgrounds on phones for performance & compatibility */
 @media (max-width: 640px) {
@@ -887,6 +897,57 @@ body {
   .projects {
     background-attachment: scroll;
   }
+}
+/* Page: Comics (dark theme similar to writing) */
+.page-comics {
+  background: #121212;
+}
+.page-comics .section {
+  background: #121212;
+  color: #fff;
+}
+.page-comics .section .section-title,
+.page-comics .section p,
+.page-comics .section h3 { color: #fff; }
+
+/* Comics: intro row two-column layout */
+.page-comics .comics-intro .intro-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.page-comics .comics-intro .intro-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+@media (max-width: 900px) {
+  .page-comics .comics-intro .intro-row { grid-template-columns: 1fr; gap: 24px; }
+}
+
+/* Comics: masonry-style column gallery (tight vertical stacking) */
+.page-comics .comics-gallery {
+  column-count: 4;
+  column-gap: 4px; /* keep narrow horizontal gap */
+}
+.page-comics .comics-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 4px; /* vertical gap equals horizontal column-gap */
+  break-inside: avoid; /* prevent images from breaking across columns */
+}
+@media (max-width: 1100px) {
+  .page-comics .comics-gallery { column-count: 3; }
+}
+@media (max-width: 800px) {
+  .page-comics .comics-gallery { column-count: 2; }
+}
+@media (max-width: 520px) {
+  .page-comics .comics-gallery { column-count: 1; }
 }
 /* Page: About (dark theme) */
 .page-about {
