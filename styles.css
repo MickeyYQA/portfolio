@@ -28,6 +28,23 @@ body {
   font-feature-settings: "liga" 1, "clig" 1, "dlig" 1, "hlig" 1, "calt" 1, "kern" 1, "rlig" 1;
 }
 
+/* Responsive media: constrain images and embeds on small screens */
+img, video, canvas, svg, iframe {
+  max-width: 100%;
+  height: auto;
+}
+picture img { /* ensure <picture> sources scale nicely */
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile spacing tweaks to reduce oversized feel on phones */
+@media (max-width: 640px) {
+  .section { padding: 28px 0 60px; }
+  .project-card { padding: 24px; }
+}
+
 .container {
   width: min(1200px, 92vw);
   margin: 0 auto;
