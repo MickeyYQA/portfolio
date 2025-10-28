@@ -630,6 +630,12 @@ body {
   box-shadow: 0 8px 20px rgba(255,255,255,0.15);
 }
 
+/* Ensure Abstract heading is white with gray underline in technology paper section */
+.page-technology .section.paper-section .abstract h3 {
+  color: #fff;
+  border-bottom-color: rgba(255,255,255,0.4);
+}
+
 /* Technology page hero half height */
 .page-technology .hero.intro.half {
   min-height: 50vh;

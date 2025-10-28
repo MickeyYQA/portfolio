@@ -71,11 +71,26 @@
         </div>
       </section>
 
-      <!-- Section 2: Other Projects (placeholder) -->
-      <section class="section other-projects">
-        <div class="container">
-          <h2 class="section-title">Other Projects</h2>
-          <p>Additional experiments and tools will be documented here to keep the page consistent with the site’s structure. Feel free to suggest what you’d like to highlight next.</p>
+      <!-- Section 2: Rip Current Detection (paper-style) -->
+      <section class="section paper-section rip-current">
+        <div class="container paper-content">
+          <h2 class="section-title">Rip Current Detection Drone</h2>
+          <div class="abstract">
+            <img class="paper-image-tail" src="assets/rip-current.png" alt="Rip current detection — visual result" />
+            <h3>Abstract</h3>
+            <div class="abstract-body">
+              <p>Rip currents pose significant hazards to beachgoers, often catching untrained individuals unaware and leading to dangerous situations. The research aims to develop an effective method for detecting rip currents using artificial intelligence, thereby enhancing beach safety.</p>
+              <p>The method involves training a binary classification model on aerial images of the ocean, categorizing them into those with rip currents and without rip currents. Data augmentations such as cutting, rotating, and flipping the image are employed to enhance the model’s generalization ability.</p>
+              <p>We utilized Multi-Layer Perceptron classifiers, achieving an accuracy of 73.9% initially on the testing set, and 92.5% after applying a confidence threshold.</p>
+              <p>The integration of the model with a Tello Talent Robomaster TT drone introduced significant flexibility and efficiency, with an average processing time of 3.09 milliseconds per 1000 images.</p>
+              <p>With a True Positive Rate (TPR) of 93.06% and True Negative Rate (TNR) of 91.10%, the model demonstrated high performance. This innovative integration of AI with rip current detection is flexible, efficient, and effective, making a meaningful contribution to beach safety.</p>
+            </div>
+          </div>
+          <div class="download-section">
+            <a class="download-btn" href="pdfs/rip-current-english.pdf" target="_blank" rel="noopener">Download Paper (English PDF)</a>
+            <a class="download-btn" href="https://user.yuanpeiyoungscholars.com/pdf/Young_Scholars_Academic_Jouranl_7th" target="_blank" rel="noopener">Journal Page</a>
+            <a class="download-btn" href="https://github.com/MickeyYQA/rip_current_detection" target="_blank" rel="noopener">GitHub Repo</a>
+          </div>
         </div>
       </section>
     </main>
