@@ -1,0 +1,879 @@
+/* Editorial serif minimalism with warm organic tones */
+:root {
+  --bg: #f7f6fb; /* pastel lavender background */
+  --bg-olive: #eaf0e6; /* soft olive tint */
+  --text: #2b2b2b;
+  --muted: #6d6d6d;
+  --accent-olive: #6f8a5f;
+  --accent-lavender: #8e79b7;
+  --border: #dedcdf;
+
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--bg-olive);
+  letter-spacing: 0.02em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-ligatures: common-ligatures discretionary-ligatures historical-ligatures contextual;
+  font-feature-settings: "liga" 1, "clig" 1, "dlig" 1, "hlig" 1, "calt" 1, "kern" 1, "rlig" 1;
+}
+
+.container {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 300ms ease, opacity 300ms ease;
+}
+.site-header.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+.brand {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.95);
+}
+.site-nav a {
+  margin-left: 24px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.95);
+  position: relative;
+}
+.site-nav a:hover {
+  color: #fff;
+}
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 0%; height: 2px;
+  background: #fff; /* white underline instead of colored gradient */
+  transition: width 240ms ease;
+}
+.site-nav a:hover::after { width: 100%; }
+
+/* Prominent CV button in nav (rightmost) */
+.site-nav .btn-cv {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  background: #fff;
+  color: #121212;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.site-nav .btn-cv:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  color: #121212; /* keep text visible on white background */
+}
+.site-nav .btn-cv::after { display: none; }
+
+@media (max-width: 640px) {
+  .site-nav .btn-cv { padding: 6px 10px; }
+}
+
+/* Make brand link styling consistent and hover underline white */
+.brand a {
+  color: inherit;
+  text-decoration: none;
+}
+.brand a:hover {
+  text-decoration-line: underline;
+  text-decoration-color: #fff;
+  text-underline-offset: 0.2em;
+}
+
+.hero.intro {
+  min-height: 100vh;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+.intro-line {
+  font-family: "EB Garamond", var(--serif);
+  font-size: clamp(36px, 6vw, 72px);
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-variant-ligatures: common-ligatures discretionary-ligatures historical-ligatures;
+  font-feature-settings: "liga" 1, "clig" 1, "dlig" 1, "hlig" 1, "calt" 1, "kern" 1;
+}
+.intro-sub {
+  margin-top: 20px;
+  color: var(--muted);
+  font-family: "EB Garamond", var(--serif);
+  font-variant-ligatures: common-ligatures discretionary-ligatures historical-ligatures;
+  font-feature-settings: "liga" 1, "clig" 1, "dlig" 1, "hlig" 1, "calt" 1, "kern" 1;
+  max-width: 70ch;
+}
+
+.projects .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  padding-bottom: 100px;
+}
+@media (max-width: 900px) {
+  .projects .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* Phone layout tweaks */
+@media (max-width: 640px) {
+  .container { padding: 24px 0; }
+  .site-header .container {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    padding: 10px 0;
+  }
+  .brand { font-size: 18px; }
+  .site-nav { display: flex; flex-wrap: wrap; gap: 12px; }
+  .site-nav a { margin-left: 0; }
+  .hero.intro { min-height: 70vh; }
+}
+
+.project-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 34px;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  border-color: #cfcbd5;
+}
+.card-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 28px;
+}
+.card-meta { color: var(--muted); margin-top: 8px; }
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: rgba(255,255,255,0.5);
+}
+.site-footer .container { padding: 26px 0; }
+
+/* Subpage shared styles */
+.hero-image {
+  width: 100%;
+  height: 420px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(142,121,183,0.2), rgba(111,138,95,0.18));
+  display: grid;
+  place-items: center;
+}
+.hero-image svg { width: min(1200px, 92vw); height: 100%; }
+.page-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.1;
+  margin-top: 32px;
+  letter-spacing: 0.02em;
+}
+.page-sub { color: var(--muted); max-width: 70ch; }
+
+.section {
+  padding: 40px 0 80px;
+}
+
+.figure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 900px) {
+  .figure-grid { grid-template-columns: 1fr; }
+}
+.figure {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 20px;
+}
+.figure h3 { font-family: var(--serif); font-size: 20px; }
+.figure p { color: var(--muted); }
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.2vw, 36px);
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+.writing-list,
+.intersections-list { color: var(--muted); }
+.intersections .poetic { margin-top: 12px; color: var(--muted); }
+
+.btn-explore {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.6);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+.btn-explore:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  border-color: #cfcbd5;
+}
+
+.links a { color: var(--text); text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+
+.section.about p { max-width: 70ch; }
+.section.writing ul { padding-left: 18px; }
+.section.contact .tagline { color: var(--muted); }
+/* Divider before each small section title */
+.section-title { position: relative; padding-top: 22px; margin-top: 36px; }
+.section-title::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: var(--border);
+}
+@media (max-width: 900px) {
+  .section-title::before { width: 100%; }
+}
+/* Clickable hint arrow inside cards */
+.card-inner { position: relative; padding-right: 32px; }
+.card-inner::after {
+  content: "→";
+  position: absolute;
+  right: 0; top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--muted);
+  opacity: 0.9;
+  transition: transform 180ms ease, color 180ms ease, opacity 180ms ease;
+}
+.project-card:hover .card-inner::after {
+  transform: translateY(-50%) translateX(4px);
+  color: var(--text);
+  opacity: 1;
+}
+@media (max-width: 900px) {
+  .card-inner { padding-right: 26px; }
+}
+
+/* Glossary tooltip with dashed underline */
+.gloss {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: currentColor;
+  text-decoration-skip-ink: none;
+  cursor: help;
+  position: relative;
+}
+.gloss::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0;
+  bottom: 125%;
+  transform: translateY(6px);
+  background: rgba(255,255,255,0.95);
+  color: #111;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 6px;
+  padding: 6px 8px;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+  z-index: 20;
+  font-size: 1rem; /* match body text size */
+}
+.gloss:hover::after, .gloss:focus::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Writing page specific styles */
+.section.documentary .content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.section.documentary .text-content {
+  max-width: none;
+}
+
+.section.documentary .video-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.section.documentary .video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 900px) {
+  .section.documentary .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* Stack download buttons on phones */
+@media (max-width: 640px) {
+  .download-btn { display: block; width: 100%; text-align: center; }
+  .download-btn + .download-btn { margin-left: 0; margin-top: 10px; }
+}
+
+/* Paper sections styling */
+.section.paper-section {
+  background: var(--bg);
+}
+
+.section.paper-section .paper-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section.paper-section .abstract h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  color: var(--text);
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--accent-olive);
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+.section.paper-section .abstract p {
+  line-height: 1.7;
+  margin-bottom: 16px;
+  text-align: justify;
+}
+/* Two-column layout for paper abstracts on wide screens */
+.section.paper-section .abstract-body {
+  column-count: 2;
+  column-gap: 36px;
+}
+.section.paper-section .abstract-body p {
+  line-height: 1.7;
+  margin-bottom: 16px;
+  text-align: justify;
+  break-inside: avoid;
+}
+@media (max-width: 1000px) {
+  .section.paper-section .abstract-body { column-count: 1; }
+}
+
+/* Image for Li Gui paper with text wrapping */
+.section.paper-section .paper-image {
+  float: left;
+  width: 320px;
+  height: auto;
+  margin: 0 24px 16px 0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+/* Full-width image placed after abstract text */
+.section.paper-section .paper-image-tail {
+  display: block;
+  float: none;
+  width: calc((100% - 36px) / 2); /* match one column width */
+  max-width: 100%;
+  height: auto;
+  margin: 20px auto 0; /* center under abstract */
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 900px) {
+  .section.paper-section .paper-image {
+    float: none;
+    width: 100%;
+    margin: 0 0 16px 0;
+  }
+}
+
+.section.paper-section .download-section {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.download-btn {
+  background: linear-gradient(135deg, var(--accent-olive), var(--accent-lavender));
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* spacing between multiple download buttons */
+.download-btn + .download-btn {
+  margin-left: 14px;
+}
+
+/* Personal Statement with image text wrapping */
+.section.personal-statement {
+  background: var(--bg-olive);
+}
+
+.section.personal-statement .statement-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section.personal-statement .statement-image {
+  float: left;
+  width: 300px;
+  height: auto;
+  margin: 0 32px 24px 0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* Secondary inline image in personal statement (same width, centered, no float) */
+.section.personal-statement .statement-image.wanzi {
+  float: left;
+  display: block;
+  width: 300px;
+  height: auto;
+  margin: 0 32px 24px 0;
+}
+
+.section.personal-statement .statement-text {
+  column-count: 1;
+}
+.section.personal-statement .statement-text p {
+  line-height: 1.7;
+  margin-bottom: 20px;
+  text-align: justify;
+  break-inside: avoid;
+}
+
+@media (max-width: 900px) {
+  .section.personal-statement .statement-image {
+    float: none;
+    width: 100%;
+    margin: 0 0 24px 0;
+  }
+  .section.personal-statement .statement-text { column-count: 1; }
+  
+  .section.personal-statement .statement-text p {
+    text-align: left;
+  }
+}
+
+@media (max-width: 1000px) {
+  .section.paper-section .paper-image-tail {
+    width: 100%;
+    margin: 16px 0 0;
+  }
+}
+
+/* Li Gui abstract: three-column grid (text spans two, image in third) */
+.section.paper-section .abstract.ligui-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 36px;
+  align-items: start;
+}
+.section.paper-section .abstract.ligui-grid .abstract-body {
+  grid-column: 1 / span 2;
+  column-count: 2;
+  column-gap: 36px;
+}
+.section.paper-section .abstract.ligui-grid .paper-image-tail {
+  grid-column: 3;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  align-self: start;
+}
+@media (max-width: 1000px) {
+  .section.paper-section .abstract.ligui-grid {
+    grid-template-columns: 1fr;
+  }
+  .section.paper-section .abstract.ligui-grid .abstract-body {
+    grid-column: 1;
+    column-count: 1;
+  }
+  .section.paper-section .abstract.ligui-grid .paper-image-tail {
+    grid-column: 1;
+    width: 100%;
+    margin-top: 16px;
+  }
+}
+
+/* Writing page hero half height */
+.page-writing .hero.intro.half {
+  min-height: 50vh;
+}
+
+/* Linguistics page hero half height */
+.page-linguistics .hero.intro.half {
+  min-height: 50vh;
+}
+
+/* Technology page dark theme */
+.page-technology .section {
+  background: #121212;
+  color: #fff;
+}
+.page-technology .section .section-title,
+.page-technology .section h3,
+.page-technology .section p { color: #fff; }
+.page-technology .figure {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.28);
+}
+.page-technology .figure h3,
+.page-technology .figure p { color: #fff; }
+.page-technology .app-voice-intent .intro-essay {
+  column-count: 2;
+  column-gap: 36px;
+  margin-bottom: 16px;
+}
+.page-technology .app-voice-intent .intro-essay p {
+  line-height: 1.7;
+  margin-bottom: 16px;
+  text-align: justify;
+  break-inside: avoid;
+}
+@media (max-width: 1000px) {
+  .page-technology .app-voice-intent .intro-essay { column-count: 1; }
+}
+.page-technology .app-voice-intent .figure {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.page-technology .app-voice-intent .figure-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+.page-technology .app-voice-intent .figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+.page-technology .download-btn {
+  background: #fff;
+  color: #121212;
+}
+.page-technology .download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+}
+
+/* Technology page hero half height */
+.page-technology .hero.intro.half {
+  min-height: 50vh;
+}
+/* Homepage section fixed backgrounds and overlay mask */
+.hero.intro,
+.section.about,
+.section.writing,
+.section.intersections,
+.section.gallery,
+.projects {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.hero.intro { background-image: url('assets/main_background_1.png'); }
+.section.about { background-image: url('assets/main_background_2.png'); }
+.section.writing { background-image: url('assets/main_background_3.jpg'); }
+.section.intersections { background-image: url('assets/main_background_4.png'); }
+.section.gallery { background-image: url('assets/main_background_5.png'); }
+.projects { background-image: url('assets/main_background_2.png'); }
+
+.hero.intro::before,
+.section.about::before,
+.section.writing::before,
+.section.intersections::before,
+.section.gallery::before,
+.projects::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 0;
+}
+.hero.intro .container,
+.section.about .container,
+.section.writing .container,
+.section.intersections .container,
+.section.gallery .container,
+.projects .container { position: relative; z-index: 1; }
+
+/* Light-on-dark text inside masked sections */
+.hero.intro .intro-line,
+.hero.intro .intro-sub,
+.section.about .section-title,
+.section.about p,
+.section.writing .section-title,
+.section.writing .writing-list,
+.section.intersections .section-title,
+.section.intersections .intersections-list,
+.section.intersections .poetic,
+.section.gallery .section-title,
+.section.gallery .figure h3,
+.section.gallery .figure p,
+.projects .card-title,
+.projects .card-tagline,
+.projects .card-inner::after {
+  color: #fff;
+}
+
+/* Divider color inside masked sections */
+.section.about .section-title::before,
+.section.writing .section-title::before,
+.section.intersections .section-title::before,
+.section.gallery .section-title::before,
+.projects .section-title::before {
+  background: rgba(255,255,255,0.25);
+}
+
+/* Ensure cards remain readable on dark overlay */
+.projects .project-card {
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(255,255,255,0.32);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.30);
+}
+.projects .project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.40);
+  border-color: rgba(255,255,255,0.6);
+}
+
+/* Match gallery cards to Featured Works style */
+.section.gallery .project-card {
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.32);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 34px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.30);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.section.gallery .project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.40);
+  border-color: rgba(255,255,255,0.6);
+}
+.section.gallery .card-title,
+.section.gallery .card-tagline,
+.section.gallery .card-inner::after { color: #fff; }
+
+/* Keep arrow white on hover in dark sections */
+.projects .project-card:hover .card-inner::after,
+.section.gallery .project-card:hover .card-inner::after {
+  color: #fff;
+  opacity: 1;
+}
+
+/* Dark Contact section with white text */
+.section.contact {
+  background: #121212;
+  color: #fff;
+}
+.section.contact .section-title,
+.section.contact p,
+.section.contact a,
+.section.contact .links a,
+.section.contact .tagline { color: #fff; }
+.section.contact a:hover { text-decoration: underline; }
+
+/* Dark footer unified with top sections */
+.site-footer {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  background: #111;
+  color: #fff;
+}
+.site-footer a { color: #fff; }
+/* Writing page CTA on dark background */
+.section.writing .btn-explore {
+  color: #fff;
+  border-color: rgba(255,255,255,0.6);
+  background: rgba(0,0,0,0.2);
+}
+.section.writing .btn-explore:hover {
+  border-color: rgba(255,255,255,0.9);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+.links a { color: var(--text); text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+
+.section.about p { max-width: 70ch; }
+.section.writing ul { padding-left: 18px; }
+.section.contact .tagline { color: var(--muted); }
+/* Divider before each small section title */
+.section-title { position: relative; padding-top: 22px; margin-top: 36px; }
+.section-title::before { display: none !important; }
+@media (max-width: 900px) {
+  .section-title::before { width: 100%; }
+}
+/* Clickable hint arrow inside cards */
+.card-inner { position: relative; padding-right: 32px; }
+.card-inner::after {
+  content: "→";
+  position: absolute;
+  right: 0; top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--muted);
+  opacity: 0.9;
+  transition: transform 180ms ease, color 180ms ease, opacity 180ms ease;
+}
+.project-card:hover .card-inner::after {
+  transform: translateY(-50%) translateX(4px);
+  color: var(--text);
+  opacity: 1;
+}
+@media (max-width: 900px) {
+  .card-inner { padding-right: 26px; }
+}
+
+/* Dark theme for writing page sections */
+.page-writing .section.documentary,
+.page-writing .section.paper-section,
+.page-writing .section.personal-statement {
+  background: #121212;
+  color: #fff;
+}
+
+.page-writing .section.documentary .section-title,
+.page-writing .section.documentary p,
+.page-writing .section.paper-section .section-title,
+.page-writing .section.paper-section .abstract h3,
+.page-writing .section.paper-section p,
+.page-writing .section.personal-statement .section-title,
+.page-writing .section.personal-statement p { color: #fff; }
+
+.page-writing .section.paper-section .abstract h3 {
+  border-bottom-color: rgba(255,255,255,0.4);
+}
+
+.page-writing .section.paper-section .download-btn {
+  background: #fff;
+  color: #121212;
+}
+.page-writing .section.paper-section .download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+}
+
+.page-writing .section.personal-statement .statement-image {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+/* Dark theme for linguistics page */
+.page-linguistics .section {
+  background: #121212;
+  color: #fff;
+}
+.page-linguistics .section .section-title,
+.page-linguistics .section h3,
+.page-linguistics .section p { color: #fff; }
+.page-linguistics .figure {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.28);
+}
+.page-linguistics .figure h3,
+.page-linguistics .figure p { color: #fff; }
+.page-linguistics .download-btn {
+  background: #fff;
+  color: #121212;
+}
+.page-linguistics .download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+}
+
+/* Ensure Abstract heading is white in linguistics paper section */
+.page-linguistics .section.paper-section .abstract h3 {
+  color: #fff;
+  border-bottom-color: rgba(255,255,255,0.4);
+}
+
+/* Disable fixed backgrounds on phones for performance & compatibility */
+@media (max-width: 640px) {
+  .hero.intro,
+  .section.about,
+  .section.writing,
+  .section.intersections,
+  .section.gallery,
+  .projects {
+    background-attachment: scroll;
+  }
+}
